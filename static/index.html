@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Task Dashboard - full-stack CRUD app" />
+  <title>Task Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="top">
+    <h1>Task Dashboard</h1>
+    <p class="sub">Plan, track and finish your work</p>
+  </header>
+
+  <main class="wrap">
+    <!-- Create / Edit form -->
+    <section class="panel" aria-labelledby="formTitle">
+      <h2 id="formTitle">Add a task</h2>
+      <form id="taskForm" novalidate>
+        <label for="title">Title</label>
+        <input type="text" id="title" maxlength="100" placeholder="e.g. Finish Progree Task 3" required />
+
+        <label for="description">Description (optional)</label>
+        <textarea id="description" rows="3" maxlength="500" placeholder="Details..."></textarea>
+
+        <div class="row">
+          <div>
+            <label for="priority">Priority</label>
+            <select id="priority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div>
+            <label for="status">Status</label>
+            <select id="status">
+              <option value="todo" selected>To do</option>
+              <option value="in_progress">In progress</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="formError" class="msg error" role="alert"></p>
+
+        <div class="actions">
+          <button type="submit" id="submitBtn" class="btn btn-primary">Add task</button>
+          <button type="button" id="cancelBtn" class="btn btn-ghost" hidden>Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Task list -->
+    <section class="panel" aria-labelledby="listTitle">
+      <h2 id="listTitle">Your tasks</h2>
+
+      <div class="toolbar">
+        <div class="filters" role="group" aria-label="Filter tasks">
+          <button type="button" class="chip active" data-filter="all">All</button>
+          <button type="button" class="chip" data-filter="todo">To do</button>
+          <button type="button" class="chip" data-filter="in_progress">In progress</button>
+          <button type="button" class="chip" data-filter="done">Done</button>
+        </div>
+        <p id="count" class="count"></p>
+      </div>
+
+      <p id="listStatus" class="msg" role="status" aria-live="polite"></p>
+      <ul id="taskList" class="tasks"></ul>
+    </section>
+  </main>
+
+  <p class="foot">Built with FastAPI, SQLite and JavaScript</p>
+
+  <script src="app.js"></script>
+</body>
+</html>
